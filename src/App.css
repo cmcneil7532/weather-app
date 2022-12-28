@@ -1,38 +1,24 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  font-family: 'montseratt', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app{
+  background-image: url(./backgrounds/cold-bg.jpg);
+  background-size:cover;
+  background-position: bottom;
+  transition: 0.9 ease-out;
 }
 
-.App-header {
-  background-color: #282c34;
+/*Depending on the weather temperature our background image will try and match the weather*/
+.app.warm{
+  background-image: url(./backgrounds/warm-bg.jpg);
+}
+main{
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
