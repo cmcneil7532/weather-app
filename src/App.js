@@ -24,16 +24,23 @@ function App() {
     }
   };
 
-  const tempConverter = (temp) =>{
-    let celsiusToFarenheit = Math.floor((temp * 9/5) + 32);
+  const tempConverter = (temp) => {
+    let celsiusToFarenheit = Math.floor((temp * 9) / 5 + 32);
     return celsiusToFarenheit;
-  }
+  };
 
-  const capitalizeString = (str) =>{
-    let str
-  }
-  capitalizeString();
-  
+  const capitalizeString = (str) => {
+    //   //Access the first letter and make it capital
+    const arr = str.split(" ");
+    // split the two words when a space is found
+
+    //loop over each index and capitalize the first letter
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1)
+    }
+    return arr.join(" ")
+  };
+
   return (
     <div className="app">
       <main>
@@ -52,7 +59,9 @@ function App() {
         {typeof data.main != "undefined" ? (
           <div>
             <div className="location-box">
-              <div className="location">{data.name}, {data.sys.country}</div>
+              <div className="location">
+                {data.name}, {data.sys.country}
+              </div>
               <div className="date">
                 {moment().format("dddd, MMMM Do YYYY")}
               </div>
@@ -72,8 +81,12 @@ function App() {
                   <span>{data.main.humidity}%</span>
                 </div>
               </div>
-              <div className="temperature">{tempConverter(data.main.temp)}°F</div>
-              <div className="description">{data.weather[0].description}</div>
+              <div className="temperature">
+                {tempConverter(data.main.temp)}°F
+              </div>
+              <div className="description">
+                {capitalizeString(data.weather[0].description)}
+              </div>
             </div>
           </div>
         ) : (
