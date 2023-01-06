@@ -34,8 +34,14 @@ body {
   background-position: bottom;
   transition: 0.9s ease-out;
 }
-.thunderstorm {
+.thunderstorms {
   background-image: url(./backgrounds/thunderstorm.jpg);
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.9s ease-out;
+}
+.default {
+  background-image: url(./backgrounds/default.jpg);
   background-size: cover;
   background-position: bottom;
   transition: 0.9s ease-out;
