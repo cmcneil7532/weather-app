@@ -8,16 +8,37 @@ body {
   font-family: "montseratt", sans-serif;
 }
 
-.app {
-  background-image: url(./backgrounds/cold-bg.jpg);
+/*Depending on the weather temperature our background image will try and match the weather*/
+.clouds {
+  background-image: url(./backgrounds/clouds.jpg);
   background-size: cover;
   background-position: bottom;
-  transition: 0.9 ease-out;
+  transition: 0.9s ease-out;
 }
 
-/*Depending on the weather temperature our background image will try and match the weather*/
-.app.warm {
-  background-image: url(./backgrounds/warm-bg.jpg);
+.clear {
+  background-image: url(./backgrounds/clear.jpg);
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.9s ease-out;
+}
+.snow {
+  background-image: url(./backgrounds/snow.jpg);
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.9s ease-out;
+}
+.rain {
+  background-image: url(./backgrounds/rain.jpg);
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.9s ease-out;
+}
+.thunderstorm {
+  background-image: url(./backgrounds/thunderstorm.jpg);
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.9s ease-out;
 }
 main {
   min-height: 100vh;
@@ -117,4 +138,11 @@ span {
   align-items: center;
   margin-top: 30px;
   font-size: 20px;
+}
+
+.weather-box .weather-image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
 }
