@@ -1,7 +1,7 @@
 import "./App.css";
 import moment from "moment/moment";
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, {  useState } from "react";
+
 
 
 
@@ -128,6 +128,7 @@ function App() {
                 <div className="weather-image">
                   <img
                     src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                    alt="weather-icon"
                   />
                 </div>
               </div>
