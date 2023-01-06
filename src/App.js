@@ -26,12 +26,13 @@ function App() {
         });
     }
   };
-
+  //Convert the celsius temp into farenheit
   const tempConverter = (temp) => {
     let celsiusToFarenheit = Math.floor((temp * 9) / 5 + 32);
     return celsiusToFarenheit;
   };
 
+  //Make everyother word have a capital first letter
   const capitalizeString = (str) => {
     //   //Access the first letter and make it capital
     const arr = str.split(" ");
@@ -44,6 +45,30 @@ function App() {
     return arr.join(" ");
   };
 
+
+  //Depending on the main weather will return the string that correlates with the css property to change the background
+  const changeBackground = (str)=>{
+    if(typeof str === "string"){
+      if(str === "Clear"){
+        return "clear"
+      }
+      else if(str === "Clouds"){
+        return "clouds"
+      }else if(str === "Snow"){
+        return "snow"
+      }else if(str === "Rain"){
+        return "rain"
+      }else if(str === "Thunderstorm"){
+        return "thunderstorms"
+      }else{
+        return "default"
+      }
+    }
+  }
+
+  
+  
+
   return (
     //Depending on the current weather temperature the background will change
 
@@ -51,11 +76,9 @@ function App() {
       {/**If we have not done a search location then it will return undefined with our default background */}
       <div
         className={
-          typeof data.main != "undefined"
-            ? data.main.temp > 20
-              ? "warm"
-              : "app"
-            : "app"
+          (typeof data.main != "undefined")
+            ? changeBackground(data.weather[0].main)
+            : "default"
         }
       >
         <main>
