@@ -28,7 +28,7 @@ function App() {
         .then((res) => res.json())
         .then((result) => {
           setState(result);
-          console.log(result)
+          console.log(result);
         });
     }
   };
@@ -100,7 +100,8 @@ function App() {
             <div>
               <div className="location-box">
                 <div className="location">
-                  {data.name}, {state[0].state}
+                  {data.name},{" "}
+                  {typeof state != "undefined" ? state[0].state : ""}
                 </div>
                 <div className="date">
                   {moment().format("dddd, MMMM Do YYYY")}
