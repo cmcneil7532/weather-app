@@ -1,33 +1,38 @@
 import "./App.css";
 import moment from "moment/moment";
-import React, {  useState } from "react";
-
-
-
+import React, { useState } from "react";
 
 function App() {
   //Grab our url and key from the enviroment file (.env)
   const key = process.env.REACT_APP_API_KEY;
   const url = process.env.REACT_APP_API_URL;
+  const url2 = process.env.REACT_APP_API_URL2;
+  console.log(url2);
 
   //This will hold our Latitude and longitude coordinates
   const [location, setLocation] = useState("");
-  // const [state, setState]= useState("")
+  const [state, setState] = useState("");
   const [data, setData] = useState({});
-
 
   const searchLocation = async (event) => {
     //Once the user clicks the enter button the function should run and return our json.
     if (event.key === "Enter") {
-      fetch(`${url}weather?q=${location},ma,us&units=metric&appid=${key}`)
+      fetch(`${url}weather?q=${location}&units=metric&appid=${key}`)
         .then((res) => res.json())
         .then((result) => {
           setData(result);
           setLocation("");
           console.log(result);
         });
+      fetch(`${url2}direct?q=${location}&limit=5&appid=${key}`)
+        .then((res) => res.json())
+        .then((result) => {
+          setState(result);
+          console.log(result)
+        });
     }
   };
+
   //Convert the celsius temp into farenheit
   const tempConverter = (temp) => {
     let celsiusToFarenheit = Math.floor((temp * 9) / 5 + 32);
@@ -47,29 +52,24 @@ function App() {
     return arr.join(" ");
   };
 
-
   //Depending on the main weather will return the string that correlates with the css property to change the background
-  const changeBackground = (str)=>{
-    if(typeof str === "string"){
-      if(str === "Clear"){
-        return "clear"
-      }
-      else if(str === "Clouds"){
-        return "clouds"
-      }else if(str === "Snow"){
-        return "snow"
-      }else if(str === "Rain"){
-        return "rain"
-      }else if(str === "Thunderstorm"){
-        return "thunderstorms"
-      }else{
-        return "default"
+  const changeBackground = (str) => {
+    if (typeof str === "string") {
+      if (str === "Clear") {
+        return "clear";
+      } else if (str === "Clouds") {
+        return "clouds";
+      } else if (str === "Snow") {
+        return "snow";
+      } else if (str === "Rain") {
+        return "rain";
+      } else if (str === "Thunderstorm") {
+        return "thunderstorms";
+      } else {
+        return "default";
       }
     }
-  }
-
-  
-  
+  };
 
   return (
     //Depending on the current weather temperature the background will change
@@ -78,7 +78,7 @@ function App() {
       {/**If we have not done a search location then it will return undefined with our default background */}
       <div
         className={
-          (typeof data.main != "undefined")
+          typeof data.main != "undefined"
             ? changeBackground(data.weather[0].main)
             : "default"
         }
@@ -100,7 +100,7 @@ function App() {
             <div>
               <div className="location-box">
                 <div className="location">
-                  {data.name}, {data.sys.country}
+                  {data.name}, {state[0].state}
                 </div>
                 <div className="date">
                   {moment().format("dddd, MMMM Do YYYY")}
