@@ -12,12 +12,14 @@ function App() {
 
   //This will hold our Latitude and longitude coordinates
   const [location, setLocation] = useState("");
+  // const [state, setState]= useState("")
   const [data, setData] = useState({});
+
 
   const searchLocation = async (event) => {
     //Once the user clicks the enter button the function should run and return our json.
     if (event.key === "Enter") {
-      fetch(`${url}weather?q=${location}&units=metric&appid=${key}`)
+      fetch(`${url}weather?q=${location},ma,us&units=metric&appid=${key}`)
         .then((res) => res.json())
         .then((result) => {
           setData(result);
